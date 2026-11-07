@@ -1,0 +1,193 @@
+<div class="bg"><i></i><i></i></div>
+<div class="glow" #glowEl></div>
+
+<header class="nav">
+    <a class="logo" href="#home">Nagadharshini<span>.</span></a>
+    <nav>
+        <a *ngFor="let l of links" [href]="'#' + l.toLowerCase()">{{ l }}</a>
+        <button class="ic" (click)="openResume()">Resume</button>
+        <button class="ic" (click)="toggleTheme()" aria-label="Toggle theme">◐</button>
+    </nav>
+</header>
+
+<main>
+    <!-- HERO -->
+    <section id="home" class="hero">
+        <p class="mono">Hello, I’m</p>
+        <h1>Nagadharshini</h1>
+        <div class="role">{{ displayedRole }}</div>
+        <p class="lead">
+            I build, maintain and enhance web applications with Angular, ASP.NET Core Web API and SQL Server,
+            with a focus on reliable, user-friendly software.
+        </p>
+        <div class="btns">
+            <a class="btn primary" href="#projects">View Projects</a>
+            <button class="btn" (click)="openResume()">View Resume</button>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="rv">
+        <h3 class="title">About</h3>
+        <div class="grid">
+            <div>
+                <p class="lead" style="margin-top:0" *ngFor="let p of about">{{ p }}</p>
+            </div>
+            <div class="term">
+                <div class="bar"><b></b><b></b><b></b></div>
+                <pre><span class="k">const</span> me = {{ '{' }}
+  role: <span class="s">".NET Full Stack Developer"</span>,
+  stack: [<span class="s">"Angular"</span>, <span class="s">"ASP.NET Core"</span>, <span class="s">"SQL Server"</span>],
+  loves: <span class="s">"solving problems"</span>,
+  based: <span class="s">"Coimbatore, India"</span>
+{{ '}' }};
+me.<span class="f">openTo</span>(<span class="s">"new opportunities"</span>);</pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="rv">
+        <h3 class="title">Skills</h3>
+        <div class="grid">
+            <div class="card" *ngFor="let s of skills">
+                <h4>{{ s.name }}</h4>
+                <div class="chips">
+                    <span *ngFor="let i of s.items">{{ i }}</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="rv">
+        <h3 class="title">Experience</h3>
+        <div class="card tl">
+            <div class="row">
+                <h4>.NET Full Stack Developer</h4>
+                <span class="mono">Jan 2023 – Present</span>
+            </div>
+            <p class="muted">eBiz Global Corp, Coimbatore</p>
+            <ul>
+                <li *ngFor="let e of exp">{{ e }}</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="rv">
+        <h3 class="title">Projects</h3>
+        <div class="grid">
+            <div class="card" *ngFor="let p of projects">
+                <h4>{{ p.n }}</h4>
+                <p class="muted">{{ p.d }}</p>
+                <div class="chips">
+                    <span *ngFor="let t of p.t">{{ t }}</span>
+                </div>
+                <ul>
+                    <li *ngFor="let x of p.p">{{ x }}</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRAINING -->
+    <section id="training" class="rv">
+        <h3 class="title">Training</h3>
+        <div class="card tl">
+            <div class="row">
+                <h4>.NET Course</h4>
+                <span class="mono">6 months</span>
+            </div>
+            <p class="muted">PUMO Technovation</p>
+            <ul>
+                <li *ngFor="let t of training">{{ t }}</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education" class="rv">
+        <h3 class="title">Education &amp; Certifications</h3>
+        <div class="grid">
+            <div class="card">
+                <h4>Education</h4>
+                <ul>
+                    <li *ngFor="let e of education">{{ e }}</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h4>Certifications</h4>
+                <ul>
+                    <li *ngFor="let c of certifications">{{ c }}</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="rv">
+        <h3 class="title">Contact</h3>
+        <p class="lead">
+            Open to opportunities in .NET development, Angular, REST API integration and database development.
+        </p>
+        <div class="btns">
+            <a class="btn primary" href="mailto:dharshiniramya98&#64;gmail.com">dharshiniramya98&#64;gmail.com</a>
+            <a class="btn" href="tel:+918270091366">+91 8270091366</a>
+        </div>
+        <p class="muted" style="margin-top:16px">Coimbatore, Tamil Nadu, India</p>
+    </section>
+</main>
+
+<footer>© {{ year }} Nagadharshini</footer>
+
+<!-- RESUME MODAL -->
+<div class="ov" id="ov" [class.open]="resumeOpen" (click)="onOverlayClick($event)">
+    <div class="sheet" (click)="$event.stopPropagation()">
+        <div class="tools">
+            <button class="btn primary" (click)="downloadPdf()">Download PDF</button>
+            <button class="btn" (click)="closeResume()">Close ✕</button>
+        </div>
+        <div id="msg">{{ downloadMessage }}</div>
+
+        <h2>Nagadharshini</h2>
+        <div class="sub">.NET Full Stack Developer</div>
+        <div class="ct">dharshiniramya98&#64;gmail.com · +91 8270091366 · Coimbatore, Tamil Nadu, India</div>
+        <h5>SUMMARY</h5>
+        <p *ngFor="let p of about">{{ p }}</p>
+
+        <h5>SKILLS</h5>
+        <p *ngFor="let s of skills"><b>{{ s.name }}:</b> {{ s.items.join(', ') }}</p>
+
+        <h5>EXPERIENCE</h5>
+        <p><b>.NET Full Stack Developer</b>, eBiz Global Corp, Coimbatore (Jan 2023 – Present)</p>
+        <ul>
+            <li *ngFor="let e of exp">{{ e }}</li>
+        </ul>
+
+        <h5>PROJECTS</h5>
+        <ng-container *ngFor="let p of projects">
+            <p><b>{{ p.n }}</b>: {{ p.d }}</p>
+            <p><i>{{ p.t.join(', ') }}</i></p>
+            <ul>
+                <li *ngFor="let x of p.p">{{ x }}</li>
+            </ul>
+        </ng-container>
+
+        <h5>EDUCATION</h5>
+        <ul>
+            <li *ngFor="let e of education">{{ e }}</li>
+        </ul>
+
+        <h5>TRAINING</h5>
+        <p><b>.NET Course</b>, PUMO Technovation (6 months)</p>
+        <ul>
+            <li *ngFor="let t of training">{{ t }}</li>
+        </ul>
+
+        <h5>CERTIFICATIONS</h5>
+        <ul>
+            <li *ngFor="let c of certifications">{{ c }}</li>
+        </ul>
+    </div>
+</div>
