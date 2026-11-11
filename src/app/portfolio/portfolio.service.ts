@@ -43,9 +43,8 @@ export class PortfolioService {
 
         write('Nagadharshini', 24, true, [27, 30, 41]);
         write('.NET Full Stack Developer', 12, true, [109, 74, 255]);
-        write('dharshiniramya98@gmail.com | +91 8270091366 | Coimbatore, Tamil Nadu, India',
-            9, false, [90, 90, 100]);
-
+        write('dharshiniramya98@gmail.com | +91 8270091366 | Coimbatore, Tamil Nadu, India', 9, false, [90, 90, 100]);
+        write('Portfolio: dharshini-portfolio-gray.vercel.app', 9, false, [90, 90, 100]);
         heading('SUMMARY');
         data.about.forEach(p => write(p, 9.5));
 
